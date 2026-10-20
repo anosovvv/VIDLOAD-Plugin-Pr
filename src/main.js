@@ -32,8 +32,7 @@ const translations = {
     importing: "Adding to project",
     complete: "Added to project",
     addedTo: "Added to",
-    failed: "Download failed",
-    paste: "Paste link"
+    failed: "Download failed"
   },
   ru: {
     subtitle: "Скачивайте и добавляйте медиа в проект",
@@ -64,8 +63,7 @@ const translations = {
     importing: "Добавляем в проект",
     complete: "Добавлено в проект",
     addedTo: "Добавлено в",
-    failed: "Загрузка не выполнена",
-    paste: "Вставить ссылку"
+    failed: "Загрузка не выполнена"
   }
 };
 
@@ -82,6 +80,10 @@ const t = (key) => translations[state.language][key] || key;
 
 function setNotice(kind, message) {
   const notice = $("#notice");
+  if (kind === "hidden") {
+    notice.className = "notice is-hidden";
+    return;
+  }
   notice.className = `notice notice-${kind}`;
   $("#notice-text").textContent = message;
   $(".notice-icon").textContent = kind === "success" ? "✓" : kind === "error" ? "!" : "i";
@@ -89,6 +91,7 @@ function setNotice(kind, message) {
 
 function setStage(stage, progress, detail) {
   $("#progress-card").classList.remove("is-hidden");
+  $("#engine-footer").classList.add("is-hidden");
   $("#progress-title").textContent = t(stage);
   $("#progress-detail").textContent = detail || "";
   $("#progress-percentage").textContent = Number.isFinite(progress) ? `${Math.round(progress)}%` : "";
@@ -105,10 +108,13 @@ function setStage(stage, progress, detail) {
 }
 
 function setBusy(isBusy) {
-  $("#download-button").disabled = isBusy;
+  $("#download-button").classList.toggle("is-disabled", isBusy);
+  $("#download-button").setAttribute("aria-disabled", String(isBusy));
   $("#video-url").disabled = isBusy;
-  $("#paste-button").disabled = isBusy;
-  document.querySelectorAll(".format-option").forEach((button) => (button.disabled = isBusy));
+  document.querySelectorAll(".format-option").forEach((option) => {
+    option.classList.toggle("is-disabled", isBusy);
+    option.setAttribute("aria-disabled", String(isBusy));
+  });
 }
 
 function applyTranslations() {
@@ -117,8 +123,6 @@ function applyTranslations() {
     element.textContent = t(element.dataset.i18n);
   });
   $("#language-button").textContent = state.language === "en" ? "RU" : "EN";
-  $("#paste-button").title = t("paste");
-  $("#paste-button").setAttribute("aria-label", t("paste"));
 }
 
 async function updateDestination() {
@@ -136,7 +140,7 @@ async function checkEngine() {
     state.engineReady = true;
     $("#engine-status").classList.add("is-ready");
     $("#engine-status-text").textContent = t("engineReady");
-    setNotice("info", t("engineAvailable"));
+    setNotice("hidden");
   } catch (_) {
     state.engineReady = false;
     $("#engine-status").classList.remove("is-ready");
@@ -231,27 +235,34 @@ async function startDownload() {
   }
 }
 
-async function pasteURL() {
-  try {
-    $("#video-url").value = await navigator.clipboard.readText();
-  } catch (_) {
-    setNotice("warning", t("linkRequired"));
-  }
+function bindActivate(element, handler) {
+  element.addEventListener("click", () => {
+    if (element.getAttribute("aria-disabled") !== "true") handler();
+  });
+  element.addEventListener("keydown", (event) => {
+    if ((event.key === "Enter" || event.key === " ") && element.getAttribute("aria-disabled") !== "true") {
+      event.preventDefault();
+      handler();
+    }
+  });
 }
 
 function initializeUI() {
-  $("#download-button").addEventListener("click", startDownload);
-  $("#paste-button").addEventListener("click", pasteURL);
-  $("#language-button").addEventListener("click", () => {
+  bindActivate($("#download-button"), startDownload);
+  bindActivate($("#language-button"), () => {
     state.language = state.language === "en" ? "ru" : "en";
     applyTranslations();
     updateDestination();
     checkEngine();
   });
-  document.querySelectorAll(".format-option").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.format = button.dataset.format;
-      document.querySelectorAll(".format-option").forEach((option) => option.classList.toggle("is-selected", option === button));
+  document.querySelectorAll(".format-option").forEach((option) => {
+    bindActivate(option, () => {
+      state.format = option.dataset.format;
+      document.querySelectorAll(".format-option").forEach((candidate) => {
+        const selected = candidate === option;
+        candidate.classList.toggle("is-selected", selected);
+        candidate.setAttribute("aria-checked", String(selected));
+      });
     });
   });
   applyTranslations();

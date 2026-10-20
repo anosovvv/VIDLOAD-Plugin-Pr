@@ -10,32 +10,31 @@
       <header class="header">
         <div class="brand-lockup">
           <div class="brand-mark" aria-hidden="true">↓</div>
-          <div>
+          <div class="brand-copy">
             <h1>VIDLOAD <span>Plugin Pr</span></h1>
             <p data-i18n="subtitle">Download and add media to your project</p>
           </div>
         </div>
-        <button id="language-button" class="language-button" type="button" aria-label="Change language">EN</button>
+        <div id="language-button" class="language-button" role="button" tabindex="0" aria-label="Change language">EN</div>
       </header>
 
       <section class="card link-card" aria-labelledby="link-label">
         <label id="link-label" for="video-url" data-i18n="linkLabel">Link</label>
-        <div class="url-row">
-          <input id="video-url" type="url" autocomplete="off" spellcheck="false" placeholder="https://…" />
-          <button id="paste-button" class="icon-button" type="button" title="Paste link" aria-label="Paste link">⌘V</button>
-        </div>
+        <input id="video-url" type="url" autocomplete="off" spellcheck="false" placeholder="" />
         <p class="hint" data-i18n="linkHint">Use links to media you are allowed to save.</p>
       </section>
 
       <section class="format-section" aria-labelledby="format-label">
         <p id="format-label" class="section-label" data-i18n="formatLabel">Format</p>
         <div class="format-toggle" role="group" aria-labelledby="format-label">
-          <button class="format-option is-selected" type="button" data-format="mp4">
-            <strong data-i18n="video">Video</strong><span> — MP4 · H.264 / AAC</span>
-          </button>
-          <button class="format-option" type="button" data-format="mp3">
-            <strong data-i18n="audio">Audio</strong><span> — MP3</span>
-          </button>
+          <div class="format-option is-selected" role="radio" tabindex="0" aria-checked="true" data-format="mp4">
+            <strong data-i18n="video">Video</strong>
+            <span>MP4 · H.264 / AAC</span>
+          </div>
+          <div class="format-option" role="radio" tabindex="0" aria-checked="false" data-format="mp3">
+            <strong data-i18n="audio">Audio</strong>
+            <span>MP3</span>
+          </div>
         </div>
       </section>
 
@@ -47,10 +46,10 @@
         </div>
       </section>
 
-      <button id="download-button" class="primary-button" type="button">
+      <div id="download-button" class="primary-button" role="button" tabindex="0">
         <span class="button-icon" aria-hidden="true">↓</span>
         <span data-i18n="downloadAndImport">Download &amp; Import</span>
-      </button>
+      </div>
 
       <section id="progress-card" class="progress-card is-hidden" aria-live="polite">
         <div class="progress-header">
@@ -74,7 +73,7 @@
         <p id="notice-text" data-i18n="engineChecking">Checking VIDLOAD Engine…</p>
       </section>
 
-      <footer class="footer">
+      <footer id="engine-footer" class="footer">
         <span id="engine-status"><span class="status-dot"></span><span data-i18n="engine">VIDLOAD Engine</span></span>
         <span id="engine-status-text" data-i18n="checking">Checking…</span>
       </footer>

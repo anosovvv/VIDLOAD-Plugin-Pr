@@ -23,16 +23,16 @@
         "default": "VIDLOAD Plugin Pr"
       },
       "minimumSize": {
-        "width": 300,
-        "height": 420
+        "width": 360,
+        "height": 520
       },
       "preferredDockedSize": {
-        "width": 360,
-        "height": 560
+        "width": 420,
+        "height": 650
       },
       "preferredFloatingSize": {
-        "width": 400,
-        "height": 620
+        "width": 460,
+        "height": 700
       }
     }
   ]
