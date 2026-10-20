@@ -1,5 +1,5 @@
 const EngineClient = (() => {
-  const baseURL = "http://127.0.0.1:17383/v1";
+  const baseURL = "http://localhost:17383/v1";
 
   async function request(path, options) {
     const response = await fetch(`${baseURL}${path}`, {
