@@ -1,0 +1,89 @@
+:root {
+  color-scheme: dark;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #1f1f1f;
+  color: #e8e8e8;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; min-width: 300px; background: #1f1f1f; }
+
+button, input { font: inherit; }
+
+.panel { display: flex; min-height: 100vh; flex-direction: column; gap: 18px; padding: 18px; background: #1f1f1f; }
+
+.header { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 2px; }
+.brand-lockup { display: flex; gap: 10px; align-items: center; }
+.brand-mark { display: grid; width: 29px; height: 29px; place-items: center; border-radius: 5px; background: #1677d2; color: #fff; font-size: 25px; font-weight: 600; line-height: 1; }
+h1 { margin: 0; color: #f2f2f2; font-size: 15px; font-weight: 650; letter-spacing: .1px; }
+h1 span { color: #a9a9a9; font-weight: 500; }
+.header p { margin: 3px 0 0; color: #a7a7a7; font-size: 11px; }
+
+.language-button, .icon-button { border: 1px solid #505050; border-radius: 4px; background: #343434; color: #e6e6e6; cursor: pointer; }
+.language-button { min-width: 35px; padding: 5px 7px; font-size: 11px; font-weight: 650; }
+.language-button:hover, .icon-button:hover { background: #464646; }
+
+.card { border: 1px solid #383838; border-radius: 5px; background: #292929; padding: 12px; }
+label, .section-label { display: block; margin: 0 0 8px; color: #dadada; font-size: 12px; font-weight: 600; }
+.url-row { display: flex; gap: 6px; }
+input { width: 100%; min-width: 0; height: 32px; border: 1px solid #4c4c4c; border-radius: 3px; outline: none; background: #1f1f1f; color: #efefef; padding: 0 9px; font-size: 12px; }
+input:focus { border-color: #1684eb; box-shadow: 0 0 0 1px #1684eb; }
+input:disabled { opacity: .6; }
+.icon-button { padding: 0 8px; font-size: 10px; white-space: nowrap; }
+.hint { margin: 8px 0 0; color: #a2a2a2; font-size: 10px; line-height: 1.35; }
+
+.format-section { display: grid; gap: 0; }
+.format-toggle { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid #484848; border-radius: 5px; background: #2a2a2a; }
+.format-option { min-height: 55px; border: 0; border-right: 1px solid #484848; background: transparent; color: #b8b8b8; cursor: pointer; padding: 9px 10px; text-align: left; }
+.format-option:last-child { border-right: 0; }
+.format-option strong, .format-option span { display: block; }
+.format-option strong { color: inherit; font-size: 12px; font-weight: 650; }
+.format-option span { margin-top: 3px; color: #989898; font-size: 10px; }
+.format-option.is-selected { background: #315a83; color: #f8f8f8; box-shadow: inset 0 0 0 1px #4397db; }
+.format-option.is-selected span { color: #d2e7fa; }
+.format-option:disabled { cursor: default; opacity: .65; }
+
+.destination-row { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #383838; padding: 0 1px 14px; }
+.destination-icon { color: #64a9df; font-size: 19px; }
+.destination-row div { display: grid; gap: 2px; }
+.destination-label { color: #a3a3a3; font-size: 10px; }
+.destination-row strong { color: #e4e4e4; font-size: 12px; font-weight: 550; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.primary-button { display: flex; min-height: 34px; align-items: center; justify-content: center; gap: 7px; border: 1px solid #1687eb; border-radius: 4px; background: #1473c9; color: white; cursor: pointer; font-size: 12px; font-weight: 650; }
+.primary-button:hover:not(:disabled) { background: #1982db; }
+.primary-button:disabled { cursor: default; opacity: .55; }
+.button-icon { font-size: 17px; line-height: 1; }
+
+.progress-card { border: 1px solid #3c3c3c; border-radius: 5px; background: #292929; padding: 12px; }
+.progress-card.is-hidden { display: none; }
+.progress-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.progress-header p { margin: 0; color: #efefef; font-size: 12px; font-weight: 600; }
+.progress-header .progress-detail { margin-top: 4px; color: #9f9f9f; font-size: 10px; font-weight: 400; }
+.progress-header strong { color: #d9e9f6; font-size: 12px; }
+.progress-track { height: 5px; margin: 12px 0; overflow: hidden; border-radius: 99px; background: #484848; }
+.progress-bar { width: 0; height: 100%; border-radius: inherit; background: #1c92ee; transition: width .2s ease; }
+.stage-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.stage-list li { display: flex; align-items: center; gap: 7px; color: #8f8f8f; font-size: 10px; }
+.stage-list li > span:first-child { width: 7px; height: 7px; border: 1px solid #777; border-radius: 50%; }
+.stage-list li.is-active { color: #e8e8e8; }
+.stage-list li.is-active > span:first-child { border-color: #208feb; background: #208feb; box-shadow: 0 0 0 3px #208feb33; }
+.stage-list li.is-complete { color: #bde5c2; }
+.stage-list li.is-complete > span:first-child { border-color: #51b761; background: #51b761; }
+
+.notice { display: flex; align-items: flex-start; gap: 8px; border: 1px solid #3d3d3d; border-radius: 4px; padding: 9px 10px; background: #292929; }
+.notice p { margin: 0; color: #bdbdbd; font-size: 11px; line-height: 1.35; }
+.notice-icon { display: grid; width: 15px; height: 15px; flex: 0 0 15px; place-items: center; border-radius: 50%; background: #6a6a6a; color: #1f1f1f; font-size: 10px; font-weight: 800; }
+.notice-warning { border-color: #685837; background: #2e2a21; }
+.notice-warning .notice-icon { background: #d6a33a; }
+.notice-error { border-color: #673e3e; background: #302323; }
+.notice-error .notice-icon { background: #e36b6b; }
+.notice-success { border-color: #3b6242; background: #223026; }
+.notice-success .notice-icon { background: #55ba64; }
+
+.footer { display: flex; justify-content: space-between; margin-top: auto; padding-top: 2px; color: #8d8d8d; font-size: 10px; }
+#engine-status { display: flex; align-items: center; gap: 5px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #8e8e8e; }
+#engine-status.is-ready .status-dot { background: #52b862; }
+
+@media (max-width: 320px) { .panel { padding: 13px; } .header p { display: none; } }

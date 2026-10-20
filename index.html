@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VIDLOAD Plugin Pr</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="panel" aria-label="VIDLOAD Plugin Pr">
+      <header class="header">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">↓</div>
+          <div>
+            <h1>VIDLOAD <span>Plugin Pr</span></h1>
+            <p data-i18n="subtitle">Download and add media to your project</p>
+          </div>
+        </div>
+        <button id="language-button" class="language-button" type="button" aria-label="Change language">EN</button>
+      </header>
+
+      <section class="card link-card" aria-labelledby="link-label">
+        <label id="link-label" for="video-url" data-i18n="linkLabel">Link</label>
+        <div class="url-row">
+          <input id="video-url" type="url" autocomplete="off" spellcheck="false" placeholder="https://…" />
+          <button id="paste-button" class="icon-button" type="button" title="Paste link" aria-label="Paste link">⌘V</button>
+        </div>
+        <p class="hint" data-i18n="linkHint">Use links to media you are allowed to save.</p>
+      </section>
+
+      <section class="format-section" aria-labelledby="format-label">
+        <p id="format-label" class="section-label" data-i18n="formatLabel">Format</p>
+        <div class="format-toggle" role="group" aria-labelledby="format-label">
+          <button class="format-option is-selected" type="button" data-format="mp4">
+            <strong data-i18n="video">Video</strong><span>MP4 · H.264 / AAC</span>
+          </button>
+          <button class="format-option" type="button" data-format="mp3">
+            <strong data-i18n="audio">Audio</strong><span>MP3</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="destination-row" aria-label="Import destination">
+        <span class="destination-icon" aria-hidden="true">▣</span>
+        <div>
+          <span class="destination-label" data-i18n="destinationLabel">Import to</span>
+          <strong id="destination-name" data-i18n="destinationLoading">Current project</strong>
+        </div>
+      </section>
+
+      <button id="download-button" class="primary-button" type="button">
+        <span class="button-icon" aria-hidden="true">↓</span>
+        <span data-i18n="downloadAndImport">Download &amp; Import</span>
+      </button>
+
+      <section id="progress-card" class="progress-card is-hidden" aria-live="polite">
+        <div class="progress-header">
+          <div>
+            <p id="progress-title">Preparing</p>
+            <p id="progress-detail" class="progress-detail"></p>
+          </div>
+          <strong id="progress-percentage"></strong>
+        </div>
+        <div class="progress-track" aria-hidden="true"><div id="progress-bar" class="progress-bar"></div></div>
+        <ol class="stage-list">
+          <li data-stage="preparing"><span></span><span data-i18n="stagePreparing">Preparing</span></li>
+          <li data-stage="downloading"><span></span><span data-i18n="stageDownloading">Downloading</span></li>
+          <li data-stage="converting"><span></span><span data-i18n="stageConverting">Preparing media</span></li>
+          <li data-stage="importing"><span></span><span data-i18n="stageImporting">Adding to project</span></li>
+        </ol>
+      </section>
+
+      <section id="notice" class="notice notice-info" aria-live="polite">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <p id="notice-text" data-i18n="engineChecking">Checking VIDLOAD Engine…</p>
+      </section>
+
+      <footer class="footer">
+        <span id="engine-status"><span class="status-dot"></span><span data-i18n="engine">VIDLOAD Engine</span></span>
+        <span id="engine-status-text" data-i18n="checking">Checking…</span>
+      </footer>
+    </main>
+    <script src="src/premiere.js"></script>
+    <script src="src/engine-client.js"></script>
+    <script src="src/main.js"></script>
+  </body>
+</html>
