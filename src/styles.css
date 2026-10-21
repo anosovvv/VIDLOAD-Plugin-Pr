@@ -78,6 +78,7 @@ h1 span { color: #adadad; font-weight: 500; }
   padding: 0;
 }
 label, .section-label { display: block; margin: 0 0 7px; color: #dadada; font-size: 12px; font-weight: 600; }
+.link-card label { transform: translateY(16px); }
 input {
   width: 100%;
   min-width: 0;
@@ -96,9 +97,7 @@ input {
 input::placeholder { color: transparent; }
 input:focus { border-color: #268ddc; }
 input:disabled { opacity: .6; }
-.hint { margin: 7px 0 0; color: #9b9b9b; font-size: 10px; line-height: 1.35; }
-
-.format-section { display: flex; width: 100%; min-width: 0; flex-direction: column; }
+.format-section { display: flex; width: 100%; min-width: 0; flex-direction: column; margin-top: 38px; }
 .format-toggle { display: flex; width: 100%; min-width: 0; gap: 7px; }
 .format-option {
   display: flex;
@@ -123,11 +122,11 @@ input:disabled { opacity: .6; }
 .format-option.is-selected span { color: #b9b9b9; }
 .format-option.is-disabled, .primary-button.is-disabled { cursor: default; opacity: .55; pointer-events: none; }
 
-.destination-row { display: flex; width: 100%; min-width: 0; align-items: center; gap: 8px; border-top: 1px solid #363636; border-bottom: 1px solid #363636; padding: 9px 1px; }
-.destination-icon { color: #62a8dd; font-size: 17px; line-height: 1; }
-.destination-row div { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 2px; }
-.destination-label { color: #969696; font-size: 10px; }
-.destination-row strong { overflow: hidden; color: #e4e4e4; font-size: 12px; font-weight: 550; text-overflow: ellipsis; white-space: nowrap; }
+.destination-row { display: flex; width: 100%; min-width: 0; align-items: center; gap: 20px; border-top: 1px solid #363636; border-bottom: 1px solid #363636; padding: 13px 2px; }
+.destination-icon { display: block; width: 18px; flex: 0 0 18px; color: #62a8dd; font-size: 17px; line-height: 1; }
+.destination-row div { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 6px; }
+.destination-label { color: #969696; font-size: 10px; line-height: 1.2; }
+.destination-row strong { overflow: hidden; color: #e4e4e4; font-size: 12px; font-weight: 550; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
 
 .primary-button {
   display: flex;

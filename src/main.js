@@ -6,7 +6,6 @@ const translations = {
   en: {
     subtitle: "Download and add media to your project",
     linkLabel: "Link",
-    linkHint: "Use links to media you are allowed to save.",
     formatLabel: "Format",
     video: "Video",
     audio: "Audio",
@@ -37,7 +36,6 @@ const translations = {
   ru: {
     subtitle: "Скачивайте и добавляйте медиа в проект",
     linkLabel: "Ссылка",
-    linkHint: "Используйте ссылки на материалы, которые имеете право сохранять.",
     formatLabel: "Формат",
     video: "Видео",
     audio: "Аудио",
