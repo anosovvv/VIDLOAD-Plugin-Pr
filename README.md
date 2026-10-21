@@ -1,5 +1,14 @@
 # VIDLOAD Plugin Pr
 
+## Русский
+
+VIDLOAD Plugin Pr — панель для Adobe Premiere Pro: вставьте ссылку на
+разрешённый публичный материал, выберите MP4 или MP3, и готовый файл появится
+в открытом проекте Premiere. Установщик уже содержит локальный Engine, yt-dlp
+и FFmpeg — Homebrew и Терминал не нужны.
+
+## English
+
 An Adobe Premiere Pro UXP panel that sends a permitted media download to a
 local VIDLOAD Engine and imports the completed file into the open Premiere
 project.
