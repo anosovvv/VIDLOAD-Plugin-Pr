@@ -58,6 +58,9 @@ swift build -c release --arch x86_64
     "${payload_root}/Library/LaunchAgents/com.anosovvv.vidload-plugin-pr.engine.plist"
 /bin/cp "${script_dir}/scripts/postinstall" "${work_dir}/scripts/postinstall"
 /bin/chmod 755 "${engine_binary_dir}/VIDLOADPluginEngine" "${work_dir}/scripts/postinstall"
+# Finder metadata can create AppleDouble files when the staged bundle is copied.
+# They are not part of the plugin and needlessly bloat the installer.
+/usr/bin/find "${payload_root}" -type f -name '._*' -delete
 
 /usr/bin/pkgbuild \
     --root "${payload_root}" \
