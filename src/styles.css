@@ -123,7 +123,7 @@ input:disabled { opacity: .6; }
 .format-option.is-disabled, .primary-button.is-disabled { cursor: default; opacity: .55; pointer-events: none; }
 
 .destination-row { display: flex; width: 100%; min-width: 0; align-items: flex-start; gap: 20px; border-top: 1px solid #363636; border-bottom: 1px solid #363636; padding: 13px 2px; }
-.destination-icon { display: block; width: 18px; flex: 0 0 18px; align-self: flex-end; transform: translateY(7px); color: #62a8dd; font-size: 17px; line-height: 1; }
+.destination-icon { display: block; width: 18px; flex: 0 0 18px; align-self: flex-end; transform: translateY(5px); color: #62a8dd; font-size: 17px; line-height: 1; }
 .destination-row div { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 5px; }
 .destination-label { color: #969696; font-size: 11px; line-height: 1.2; }
 .destination-row strong { overflow: hidden; color: #e4e4e4; font-size: 12px; font-weight: 550; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
