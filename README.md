@@ -4,9 +4,7 @@ An Adobe Premiere Pro UXP panel that sends a permitted media download to a
 local VIDLOAD Engine and imports the completed file into the open Premiere
 project.
 
-## Current milestone
-
-This repository contains the first working development slice:
+## Features
 
 - Premiere-native dockable panel design;
 - Russian and English interface;
@@ -14,17 +12,15 @@ This repository contains the first working development slice:
 - accurate, stage-based progress UI;
 - automatic import into the current insertion bin through the Premiere API;
 - a local Swift VIDLOAD Engine with an HTTP API on `127.0.0.1:17383`;
-- a documented Engine contract.
+- automatic clearing of the completed link, ready for the next import.
 
-The Engine already reuses the download and conversion approach of the
-standalone VIDLOAD app. During development it discovers the bundled yt-dlp and
-FFmpeg tools from `/Applications/VIDLOAD.app`; release packaging will place the
-same tools inside the Engine app bundle.
+The release Engine includes its own yt-dlp and FFmpeg tools. It does not require
+Homebrew, Terminal, or a separate VIDLOAD application.
 
 ## Release installer
 
 The public release is a single macOS installer package:
-`VIDLOAD-Plugin-Pr-0.1.1.pkg`.
+`VIDLOAD-Plugin-Pr-0.1.2.pkg`.
 
 It contains the Premiere plugin, VIDLOAD Plugin Pr Engine, yt-dlp and FFmpeg.
 The installer puts the Engine in `/Applications`, installs a background launch

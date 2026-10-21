@@ -162,6 +162,9 @@ async function finishDownload(job) {
   try {
     const destination = await PremiereBridge.importFile(job.outputPath);
     setStage("complete", 100, "");
+    // Keep a failed link in place for a retry, but clear a completed one so the
+    // panel is immediately ready for the next download.
+    $("#video-url").value = "";
     setNotice("success", `${t("complete")}: ${t("addedTo")} ${destination.binName}.`);
   } catch (error) {
     setNotice("error", error.message || t("projectUnavailable"));
