@@ -60,6 +60,7 @@ swift build -c release --arch x86_64
 /bin/chmod 755 "${engine_binary_dir}/VIDLOADPluginEngine" "${work_dir}/scripts/postinstall"
 # Finder metadata can create AppleDouble files when the staged bundle is copied.
 # They are not part of the plugin and needlessly bloat the installer.
+/usr/bin/xattr -rc "${payload_root}"
 /usr/bin/find "${payload_root}" -type f -name '._*' -delete
 
 /usr/bin/pkgbuild \
