@@ -63,6 +63,7 @@ final class DownloadJob {
     var outputPath: String?
     var process: Process?
     var pendingOutput = ""
+    var lastToolError: String?
     var conversionDuration: TimeInterval?
     var conversionSeconds: TimeInterval = 0
     var cancelled = false
@@ -224,6 +225,7 @@ final class DownloadRunner {
                 "--ignore-config",
                 "--newline",
                 "--no-playlist",
+                "--ignore-errors",
                 "--progress-delta", "0.25",
                 "--ffmpeg-location", tools.ffmpeg.deletingLastPathComponent().path,
                 "--progress-template", "download:PROGRESS:%(progress._percent_str)s|%(progress._speed_str)s|%(progress._eta_str)s",
@@ -255,9 +257,16 @@ final class DownloadRunner {
                 return
             }
 
-            guard process.terminationStatus == 0 else {
+            let outputURL = job.outputPath.map(URL.init(fileURLWithPath:))
+            let savedAvailableItem = outputURL.map { FileManager.default.fileExists(atPath: $0.path) } ?? false
+
+            // Instagram carousel posts can contain an item for which the service exposes
+            // no video stream, while a later item is still successfully saved. yt-dlp
+            // returns a non-zero status for that partial result, so accept the actual
+            // output and continue to the Premiere conversion when one exists.
+            guard process.terminationStatus == 0 || savedAvailableItem else {
                 job.status = .failed
-                job.error = "yt-dlp exited with code \(process.terminationStatus)."
+                job.error = downloadFailureMessage(for: job, exitCode: process.terminationStatus)
                 job.detail = "Download failed"
                 return
             }
@@ -288,6 +297,10 @@ final class DownloadRunner {
     private func handleDownloadLine(_ line: String, job: DownloadJob) {
         guard !line.isEmpty else { return }
 
+        if line.hasPrefix("ERROR:") {
+            job.lastToolError = String(line.dropFirst("ERROR:".count)).trimmingCharacters(in: .whitespaces)
+        }
+
         if let range = line.range(of: "PROGRESS:") {
             job.stage = .downloading
             job.detail = ""
@@ -308,6 +321,25 @@ final class DownloadRunner {
             let path = String(line[range.upperBound...]).trimmingCharacters(in: .whitespacesAndNewlines)
             if !path.isEmpty { job.outputPath = path }
         }
+    }
+
+    private func downloadFailureMessage(for job: DownloadJob, exitCode: Int32) -> String {
+        let toolMessage = job.lastToolError ?? ""
+        let normalized = toolMessage.lowercased()
+
+        if normalized.contains("no video formats found") {
+            return "Instagram did not provide a downloadable video stream for this item."
+        }
+        if normalized.contains("sign in to confirm") || normalized.contains("login page") {
+            return "This service requires an active signed-in session for this link."
+        }
+        if normalized.contains("too many requests") || normalized.contains("http error 429") {
+            return "The service is temporarily limiting requests. Please try again later."
+        }
+        if !toolMessage.isEmpty {
+            return toolMessage
+        }
+        return "yt-dlp exited with code \(exitCode)."
     }
 
     private func convertForPremiere(job: DownloadJob, source: URL) {

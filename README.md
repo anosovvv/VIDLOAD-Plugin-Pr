@@ -24,7 +24,7 @@ same tools inside the Engine app bundle.
 ## Release installer
 
 The public release is a single macOS installer package:
-`VIDLOAD-Plugin-Pr-0.1.0.pkg`.
+`VIDLOAD-Plugin-Pr-0.1.1.pkg`.
 
 It contains the Premiere plugin, VIDLOAD Plugin Pr Engine, yt-dlp and FFmpeg.
 The installer puts the Engine in `/Applications`, installs a background launch

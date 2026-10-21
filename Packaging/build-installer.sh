@@ -7,7 +7,7 @@ project_root="${script_dir:h}"
 engine_root="${project_root}/Engine"
 tools_source="/Applications/VIDLOAD.app/Contents/Resources/VIDLOADTools.bundle"
 ccx_path="${1:-}"
-version="0.1.0"
+version="0.1.1"
 output_dir="${project_root}/dist"
 installer_path="${output_dir}/VIDLOAD-Plugin-Pr-${version}.pkg"
 
