@@ -20,7 +20,7 @@ Homebrew, Terminal, or a separate VIDLOAD application.
 ## Release installer
 
 The public release is a single macOS installer package:
-`VIDLOAD-Plugin-Pr-0.1.2.pkg`.
+`VIDLOAD-Plugin-Pr-0.1.3.pkg`.
 
 It contains the Premiere plugin, VIDLOAD Plugin Pr Engine, yt-dlp and FFmpeg.
 The installer puts the Engine in `/Applications`, installs a background launch

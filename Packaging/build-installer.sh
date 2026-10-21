@@ -7,7 +7,7 @@ project_root="${script_dir:h}"
 engine_root="${project_root}/Engine"
 tools_source="/Applications/VIDLOAD.app/Contents/Resources/VIDLOADTools.bundle"
 ccx_path="${1:-}"
-version="0.1.2"
+version="0.1.3"
 output_dir="${project_root}/dist"
 installer_path="${output_dir}/VIDLOAD-Plugin-Pr-${version}.pkg"
 
@@ -51,6 +51,7 @@ swift build -c release --arch x86_64
     -output "${engine_binary_dir}/VIDLOADPluginEngine"
 
 /bin/cp "${script_dir}/engine-app/Info.plist" "${engine_app}/Contents/Info.plist"
+/bin/cp "${script_dir}/engine-app/VIDLOADPluginEngine.icns" "${resources_dir}/VIDLOADPluginEngine.icns"
 /usr/bin/ditto --norsrc "${tools_source}" "${resources_dir}/VIDLOADTools.bundle"
 /usr/bin/xattr -rc "${engine_app}"
 /bin/cp "${ccx_path}" "${payload_root}/Library/Application Support/VIDLOAD Plugin Pr/VIDLOAD Plugin Pr.ccx"

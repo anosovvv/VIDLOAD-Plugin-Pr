@@ -1,4 +1,4 @@
-# VIDLOAD Plugin Pr 0.1.2
+# VIDLOAD Plugin Pr 0.1.3
 
 ## What changed
 
@@ -9,10 +9,12 @@
   processed.
 - Download errors now describe the actual issue instead of showing only a
   generic yt-dlp exit code.
+- The installed VIDLOAD Plugin Pr Engine now uses the same beer-mug app icon as
+  VIDLOAD in Finder.
 
 ## Install
 
-Download and open `VIDLOAD-Plugin-Pr-0.1.2.pkg`. The single installer includes
+Download and open `VIDLOAD-Plugin-Pr-0.1.3.pkg`. The single installer includes
 the Premiere panel, local VIDLOAD Engine, yt-dlp, and FFmpeg. Close Premiere
 before installing, then reopen it and use **Window → UXP Plugins → VIDLOAD
 Plugin Pr**.
