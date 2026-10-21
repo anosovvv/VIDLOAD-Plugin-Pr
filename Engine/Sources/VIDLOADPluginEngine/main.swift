@@ -118,7 +118,14 @@ struct ToolPaths {
             return ToolPaths(ytDlp: explicitYtDlp, ffmpeg: explicitFFmpeg)
         }
 
+        let executableURL = URL(fileURLWithPath: CommandLine.arguments[0]).standardizedFileURL
+        let bundledTools = executableURL
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Resources/VIDLOADTools.bundle")
+
         let bundledRoots = [
+            bundledTools.path,
             "/Applications/VIDLOAD.app/Contents/Resources/VIDLOADTools.bundle",
             "/Applications/VIDLOAD Plugin Pr Engine.app/Contents/Resources/VIDLOADTools.bundle"
         ]

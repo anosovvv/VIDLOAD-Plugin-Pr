@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+set -u
+
+target_volume="${3:-/}"
+ccx_path="${target_volume%/}/Library/Application Support/VIDLOAD Plugin Pr/VIDLOAD Plugin Pr.ccx"
+launch_agent="${target_volume%/}/Library/LaunchAgents/com.anosovvv.vidload-plugin-pr.engine.plist"
+upia="${target_volume%/}/Library/Application Support/Adobe/Adobe Desktop Common/RemoteComponents/UPI/UnifiedPluginInstallerAgent/UnifiedPluginInstallerAgent.app/Contents/MacOS/UnifiedPluginInstallerAgent"
+
+console_user="$(/usr/bin/stat -f '%Su' /dev/console)"
+
+if [[ -n "${console_user}" && "${console_user}" != "root" && "${console_user}" != "loginwindow" ]]; then
+    user_id="$(/usr/bin/id -u "${console_user}")"
+
+    if [[ -x "${upia}" ]]; then
+        /bin/launchctl asuser "${user_id}" /usr/bin/sudo -u "${console_user}" "${upia}" --install "${ccx_path}" \
+            || echo "VIDLOAD Plugin Pr: Adobe plugin installation needs to be completed from the included CCX file."
+    else
+        echo "VIDLOAD Plugin Pr: Creative Cloud installer was not found; the bundled CCX file was left in Application Support."
+    fi
+
+    /bin/launchctl bootstrap "gui/${user_id}" "${launch_agent}" 2>/dev/null || true
+    /bin/launchctl kickstart -k "gui/${user_id}/com.anosovvv.vidload-plugin-pr.engine" 2>/dev/null || true
+fi
+
+exit 0

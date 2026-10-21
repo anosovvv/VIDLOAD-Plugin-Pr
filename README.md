@@ -21,6 +21,22 @@ standalone VIDLOAD app. During development it discovers the bundled yt-dlp and
 FFmpeg tools from `/Applications/VIDLOAD.app`; release packaging will place the
 same tools inside the Engine app bundle.
 
+## Release installer
+
+The public release is a single macOS installer package:
+`VIDLOAD-Plugin-Pr-0.1.0.pkg`.
+
+It contains the Premiere plugin, VIDLOAD Plugin Pr Engine, yt-dlp and FFmpeg.
+The installer puts the Engine in `/Applications`, installs a background launch
+agent so the Engine is ready after sign-in, and asks Adobe's official installer
+to install the included `.ccx` plugin package. Users do not need Homebrew,
+Terminal, or a separate Engine download.
+
+Because this first independent release is not signed with an Apple Developer
+ID, macOS will show its standard warning before installation. Open the package
+only after downloading it from the official release page, then restart Premiere
+and open **Window → UXP Plugins → VIDLOAD Plugin Pr**.
+
 ## Development requirements
 
 - Adobe Premiere Pro 25.6 or newer;
